@@ -1,0 +1,6 @@
+*
+!.gitignore
+!after_startup.sh
+!conf.xml
+!startup.sh
+!shutdown.sh

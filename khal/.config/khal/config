@@ -1,0 +1,29 @@
+#/etc/khal/khal.conf.sample
+[calendars]
+[[this]]
+path = ~/.dav/cal/default/
+color = dark green
+
+[[that]]
+path = ~/.dav/cal/uonvfy/
+color = yellow
+
+[sqlite]
+path = ~/.dav/khal.db
+
+[locale]
+local_timezone = Europe/Berlin
+default_timezone = America/New_York
+
+timeformat = %H:%M
+dateformat = %d.%m.
+longdateformat = %d.%m.%Y
+datetimeformat =  %d.%m. %H:%M
+longdatetimeformat = %d.%m.%Y %H:%M
+
+firstweekday = 0
+
+[default]
+default_calendar = that
+timedelta = 10d
+highlight_event_days = True
