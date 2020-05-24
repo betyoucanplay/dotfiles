@@ -1,7 +1,7 @@
-# dotfiles
+## dotfiles
 
-## Install separately with stow [https://www.gnu.org/software/stow/]
-```
-cd .dotfiles
+### Install with [GNU Stow](https://www.gnu.org/software/stow/ )
+```sh
+cd .dotfiles 
 stow i3
 ```
