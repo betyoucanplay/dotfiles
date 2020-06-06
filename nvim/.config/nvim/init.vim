@@ -10,8 +10,6 @@ call plug#begin('~/.config/nvim/bundle')
 " Common
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'lilydjwg/colorizer'
 Plug 'mbbill/undotree'
 Plug 'vimwiki/vimwiki'
@@ -29,6 +27,8 @@ Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 
 " Syntax
 Plug 'rust-lang/rust.vim'
@@ -164,7 +164,7 @@ set pastetoggle=<F2>
 nnoremap <Leader><space> :noh<cr>
 
 " Open Terminal
-nnoremap <silent> <Leader>os :15split term://zsh<CR>
+nnoremap <silent> <Leader>s :15split term://zsh<CR>
 
 " Exit terminal
 tnoremap <Esc> <C-\><C-n>

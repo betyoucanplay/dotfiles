@@ -205,6 +205,7 @@ alias cp='cp -ra'
 alias pm='ncpamixer'
 alias e='exa -l --group-directories-first --git'
 alias ea='exa -l -a --group-directories-first --git'
+alias todo_n='todo new -l default'
 fortune
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

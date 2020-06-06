@@ -165,11 +165,7 @@ for_window [class="Nitrogen"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="(?i)keepassxc"] floating enable
-for_window [class="copyq"] floating enable
-for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="Pavucontrol"] floating enable
-for_window [title="(?i)fmui"] floating enable
-#for_window [class="(?i)Mixbus32c-5.3.4"] floating enable move right 600px,move up 0px
 
 # AUTOSTART
 exec --no-startup-id dunst
