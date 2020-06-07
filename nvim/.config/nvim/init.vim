@@ -1,6 +1,12 @@
 set nocompatible
 set hidden
 
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -29,6 +35,7 @@ Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
+Plug 'cespare/vim-toml'
 
 " Syntax
 Plug 'rust-lang/rust.vim'

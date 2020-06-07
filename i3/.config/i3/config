@@ -158,7 +158,6 @@ for_window [title="File Transfer*"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 for_window [class="QjackCtl"] floating enable
-for_window [class="Skype"] floating enable
 for_window [class="Steam"] floating enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="Nitrogen"] floating enable

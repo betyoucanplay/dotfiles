@@ -121,7 +121,7 @@ if ($TERM =~ '256' || &t_Co >= 256) || has("gui_running")
     hi StatusLineModeInsert   ctermbg=22      ctermfg=white   guibg=#005f00   guifg=white     cterm=NONE gui=NONE
     hi StatusLineModeReplace  ctermbg=124     ctermfg=white   guibg=#af0000   guifg=white     cterm=NONE gui=NONE
     hi StatusLineModeVisual   ctermbg=90      ctermfg=white   guibg=#870087   guifg=white     cterm=NONE gui=NONE
-    hi StatusLineModeCommand  ctermbg=11      ctermfg=black   guibg=#870087   guifg=white     cterm=NONE gui=NONE
+    hi StatusLineModeCommand  ctermbg=11      ctermfg=black   guibg=#ffff00   guifg=black     cterm=NONE gui=NONE
     hi StatusLineModeTerminal ctermbg=22      ctermfg=white   guibg=#005f00   guifg=white     cterm=NONE gui=NONE
     hi StatusLineModePM       ctermbg=202     ctermfg=233     guibg=#ff5f00   guifg=#121212   cterm=NONE gui=NONE
     hi StatusLineBuffer       ctermbg=31      ctermfg=white   guibg=#0087AF   guifg=white     cterm=NONE gui=NONE
