@@ -38,7 +38,7 @@ endif
 let colors_name = "roxsource"
 
 if ($TERM =~ '256' || &t_Co >= 256) || has("gui_running")
-    hi Normal           ctermbg=NONE ctermfg=250  guibg=#080808 guifg=#bcbcbc cterm=NONE           gui=NONE
+    hi Normal           ctermbg=NONE ctermfg=250  guibg=NONE guifg=#bcbcbc cterm=NONE           gui=NONE
     hi LineNr           ctermbg=NONE ctermfg=236  guibg=NONE    guifg=#303030 cterm=NONE           gui=NONE
     hi FoldColumn       ctermbg=234  ctermfg=242  guibg=#1c1c1c guifg=#6c6c6c cterm=NONE           gui=NONE
     hi Folded           ctermbg=234  ctermfg=249  guibg=#1c1c1c guifg=#6c6c6c cterm=NONE           gui=NONE

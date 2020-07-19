@@ -19,9 +19,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'lilydjwg/colorizer'
 Plug 'mbbill/undotree'
 Plug 'vimwiki/vimwiki'
-Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'preservim/nerdtree'
+Plug 'junegunn/goyo.vim'
+Plug 'tpope/vim-surround'
+Plug 'preservim/nerdcommenter'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -29,15 +31,12 @@ Plug 'junegunn/gv.vim'
 
 " Code
 Plug 'moll/vim-node'
-Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'cespare/vim-toml'
-
-" Syntax
 Plug 'rust-lang/rust.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'pangloss/vim-javascript'
@@ -64,6 +63,12 @@ set autoindent
 set history=10000
 set updatetime=100
 let mapleader = "´"
+"set guicursor=a:blinkon100
+
+augroup RestoreCursorShapeOnExit
+    autocmd!
+    autocmd VimLeave * set guicursor=a:blinkon100
+augroup END
 
 " Make it easier to work with buffers
 " http://vim.wikia.com/wiki/Easier_buffer_switching
@@ -253,6 +258,8 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
+" Let quit work as expected if after entering :q the only window left open is NERD Tree itself
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """"""""""
 " Vimwiki
@@ -271,16 +278,12 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 " Startyfy
 let g:startify_fortune_use_unicode = 1
 
-
-" Let quit work as expected if after entering :q the only window left open is NERD Tree itself
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 """"""""""""""""""""""
 " coc
 """"""""""""""""""""""
 
 " Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -443,12 +446,25 @@ let g:fzf_colors =
             \ 'spinner': ['fg', 'Label'],
             \ 'header':  ['fg', 'Comment'] }
 
-" CtrlSF
-let g:ctrlsf_extra_backend_args = {
-            \ 'rg': '--hidden --smart-case -g "!.git"'
-            \ }
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
+let g:fzf_command_prefix = 'FZF'
+
+
+"""""""
 " Goyo
-let g:goyo_width="70%"
+"""""""
+let g:goyo_width="85%"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gui/no gui
@@ -474,7 +490,6 @@ fun! ActiveStatusLine()
     let l:statusline.=" Σ%{GetSumBuffers()}/%n\ "
     let l:statusline.="%#StatusLineGit#"
     let l:statusline.="%{GetBranchFugitive()}"
-    let l:statusline.="%{GetModificationsGitgutter()}"
     let l:statusline.="%<"
     let l:statusline.="%#StatusLineActive#"
     let l:statusline.="\ %F\ "
@@ -501,7 +516,6 @@ fun! InactiveStatusLine()
     let l:statusline.="\ Σ%{GetSumBuffers()}/%n\ "
     let l:statusline.="%#StatusLineInactive#"
     let l:statusline.="%{GetBranchFugitive()}"
-    let l:statusline.="%{GetModificationsGitgutter()}"
     let l:statusline.="%<"
     let l:statusline.="%#StatusLineInactive#"
     let l:statusline.="\ %F\ "
@@ -588,18 +602,6 @@ fun! GetBranchFugitive()
         return empty(l:head) ? "" : l:symbol.l:head . "\u00A0"
     endif
     return '':
-endfun
-
-" Get file modifications of working tree to last commit
-fun! GetModificationsGitgutter()
-    let l:strModification = ''
-    if exists('b:gitgutter')
-        let l:modification = get(b:gitgutter, 'summary', [0, 0, 0])
-        if l:modification[0] != 0 || l:modification[1] != 0 || l:modification[2] != 0
-            let l:strModification = "+".l:modification[0]."\u00A0~".l:modification[1]."\u00A0-".l:modification[2] . "\u00A0"
-        endif
-    endif
-    return strModification
 endfun
 
 " Get number of buffers

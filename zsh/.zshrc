@@ -21,44 +21,6 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh/
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="spaceship"
-SPACESHIP_USER_COLOR=159
-SPACESHIP_CHAR_SYMBOL="❯ "
-SPACESHIP_JOBS_SYMBOL="🗲 "
-SPACESHIP_GIT_STATUS_DELETED="x"
-SPACESHIP_CHAR_COLOR_SUCCESS="white"
-SPACESHIP_EXEC_TIME_COLOR="136"
-SPACESHIP_DIR_COLOR="blue"
-SPACESHIP_GIT_BRANCH_COLOR="64"
-SPACESHIP_GIT_STATUS_COLOR="96"
-
-SPACESHIP_PROMPT_ORDER=(
-    time          # Time stampts section
-    user          # Username section
-    dir           # Current directory section
-    host          # Hostname section
-    git           # Git section (git_branch + git_status)
-    package       # Package version
-    node          # Node.js section
-    ruby          # Ruby section
-    elixir        # Elixir section
-    golang        # Go section
-    rust          # Rust section
-    haskell       # Haskell Stack section
-    docker        # Docker section
-    venv          # virtualenv section
-    pyenv         # Pyenv section
-    exec_time     # Execution time
-    line_sep      # Line break
-    jobs          # Background jobs indicator
-    exit_code     # Exit code section
-    char          # Prompt character
-)
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -89,7 +51,10 @@ DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
-
+fjrnl() {
+  title=$(jrnl --short | fzf --tac --no-sort) &&
+  jrnl -on "$(echo $title | cut -c 1-16)" $1
+  }
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="false"
 
@@ -206,11 +171,24 @@ alias pm='ncpamixer'
 alias e='exa -l --group-directories-first --git'
 alias ea='exa -l -a --group-directories-first --git'
 alias todo_n='todo new -l default'
+j() {
+    if [[ "$#" -ne 0 ]]; then
+        cd $(autojump $@)
+        return
+    fi
+    cd "$(autojump -s | sort -k1gr | awk '$1 ~ /[0-9]:/ && $2 ~ /^\// { for (i=2; i<=NF; i++) { print $(i) } }' |  fzf --height 40% --reverse --inline-info)"
+}
+fjrnl() {
+    title=$(jrnl --short | fzf --tac --no-sort) &&
+        jrnl -on "$(echo $title | cut -c 1-16)" $1
+}
+
 fortune
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fpath=($fpath "/home/chris/.zfunctions")
 
 # Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
+#autoload -U promptinit; promptinit
+#prompt spaceship
+eval "$(starship init zsh)"

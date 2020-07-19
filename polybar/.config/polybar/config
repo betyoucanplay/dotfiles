@@ -99,7 +99,7 @@ type = internal/fs
 interval = 25
 mount-0 = /
 mount-1 = /home/chris/bck
-label-mounted = %{F#8ec07c}%{F-} %percentage_used%%
+label-mounted = %{F#8ec07c} %{F-} %percentage_used%%
 label-unmounted = %{F#8ec07c}%mountpoint%%{F-}
 label-unmounted-foreground = ${colors.foreground-alt}
 
