@@ -76,8 +76,9 @@ set hidden
 set confirm
 set autowriteall
 
-set wildmode=full
+
 set wildmenu
+set wildmode=longest:full,full
 
 " Splits
 set splitbelow
@@ -252,6 +253,11 @@ let g:python_highlight_file_headers_as_comments = 1
 " Plugin configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""
+" vimtex
+""""""""""
+let g:tex_flavor = 'latex'
+
+""""""""""
 " NERDTree
 """"""""""
 map <C-n> :NERDTreeToggle<CR>
@@ -298,6 +304,8 @@ set signcolumn=no
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
+let g:UltiSnipsExpandTrigger = "<nop>"
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :

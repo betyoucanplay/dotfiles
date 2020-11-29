@@ -32,7 +32,8 @@ set $ws6  "6: 6 "
 set $ws7  "7: 7 "
 set $ws8  "8: 8 "
 set $ws9  "9: 9 "
-set $ws10 "10: 10 "
+set $ws10 "10: Mixer "
+
 
 default_border pixel 1
 default_floating_border normal
@@ -42,7 +43,7 @@ focus_follows_mouse no
 popup_during_fullscreen smart
 workspace_auto_back_and_forth yes
 
-font pango:RobotoMono Nerd Font Regular 10
+font pango:RobotoMono Nerd Font Regular 9
 
 #                       BORDER      BACKGROUND  TEXT   INDICATOR   CHILD_BORDER
 client.focused          $cyan       $cyan       $white $cyan       $cyan
@@ -53,7 +54,7 @@ client.background       $black
 
 floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id $term
-bindsym $mod+f exec --no-startup-id i3-easyfocus -a -f -misc-hack-bold-r-normal--0-0-0-0-m-0-iso8859-16 --color-unfocused-bg FFFFFF --color-unfocused-fg 006600 --color-focused-fg 000000 --color-focused-bg FFFFFF --color-urgent-fg FF0000 --color-urgent-bg FFFFFF
+bindsym $mod+Shift+space exec --no-startup-id i3-easyfocus -a -f -misc-hack-bold-r-normal--0-0-0-0-m-0-iso8859-16 --color-unfocused-bg FFFFFF --color-unfocused-fg 006600 --color-focused-fg 000000 --color-focused-bg FFFFFF --color-urgent-fg FF0000 --color-urgent-bg FFFFFF
 bindsym $mod+r exec --no-startup-id ~/bin/slopsize
 bindsym $mod+v exec --no-startup-id $term -e nvim
 
@@ -64,8 +65,8 @@ bindsym XF86AudioMute exec --no-startup-id dolphin
 bindsym XF86Calculator exec --no-startup-id chromium
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+Tab exec --no-startup-id rofi -show window
-bindsym $mod+q exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-bindsym Print exec --no-startup-id flameshot gui
+bindsym $mod+Mod1+minus exec --no-startup-id /home/chris/.screenlayout/l_h_h_p
+bindsym $mod+Mod1+plus exec --no-startup-id /home/chris/.screenlayout/l_v_h_p
 
 bindsym $mod+Shift+c kill
 
@@ -140,15 +141,6 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown"
-mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
-  bindsym l exec i3-msg exit
-  bindsym r exec sudo systemctl reboot
-  bindsym s exec sudo systemctl halt
-  bindsym Escape mode "default"
-  bindsym Return mode "default"
-}
-
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
@@ -165,14 +157,15 @@ for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="(?i)keepassxc"] floating enable
 for_window [class="Pavucontrol"] floating enable
+assign [title=".*Mixer - Mixbus32C"] $ws10
+assign [title=".*Mixbus32C"] $ws9
 
 # AUTOSTART
 exec --no-startup-id dunst
-#exec --no-startup-id xedgewarp -b &
 exec --no-startup-id unclutter -grab
 exec --no-startup-id mpd
 exec --no-startup-id pasystray
-exec --no-startup-id exec nitrogen --restore
 exec --no-startup-id picom -b
 exec --no-startup-id ~/.config/polybar/launch.sh
-
+exec --no-startup-id klipper
+exec --no-startup-id bukuserver run &

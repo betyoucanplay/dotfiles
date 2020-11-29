@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:/home/chris/bin:/home/chris/.npm_global/bin:/usr/share/java/gradle/bin:/opt/mixbus32c/bin
+export PATH=$PATH:/home/chris/bin:/home/chris/.npm_global/bin:/usr/share/java/gradle/bin:/opt/mixbus32c/bin:/home/chris/.screenlayout:/home/chris/.local/bin
 export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=/usr/bin/nvim
 export ZSH=/usr/share/oh-my-zsh
@@ -171,6 +171,8 @@ alias pm='ncpamixer'
 alias e='exa -l --group-directories-first --git'
 alias ea='exa -l -a --group-directories-first --git'
 alias todo_n='todo new -l default'
+alias alacritty-color='alacritty-colorscheme -C ~/src/cfg/alacritty-theme/themes '
+
 j() {
     if [[ "$#" -ne 0 ]]; then
         cd $(autojump $@)
@@ -183,7 +185,6 @@ fjrnl() {
         jrnl -on "$(echo $title | cut -c 1-16)" $1
 }
 
-fortune
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fpath=($fpath "/home/chris/.zfunctions")
@@ -192,3 +193,5 @@ fpath=($fpath "/home/chris/.zfunctions")
 #autoload -U promptinit; promptinit
 #prompt spaceship
 eval "$(starship init zsh)"
+
+fortune

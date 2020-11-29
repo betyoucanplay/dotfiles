@@ -48,7 +48,7 @@ cursor-scroll = pointer
 [module/i3]
 type = internal/i3
 pin-workspaces = false
-strip-wsnumbers = true
+strip-wsnumbers = false
 index-sort = false
 enable-click = true
 enable-scroll = true
