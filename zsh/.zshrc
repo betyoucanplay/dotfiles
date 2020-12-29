@@ -172,6 +172,9 @@ alias e='exa -l --group-directories-first --git'
 alias ea='exa -l -a --group-directories-first --git'
 alias todo_n='todo new -l default'
 alias alacritty-color='alacritty-colorscheme -C ~/src/cfg/alacritty-theme/themes '
+alias performance='sudo cpupower frequency-set -g performance'
+alias powersave='sudo cpupower frequency-set -g powersave'
+
 
 j() {
     if [[ "$#" -ne 0 ]]; then

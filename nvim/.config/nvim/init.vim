@@ -140,7 +140,7 @@ set smartcase
 set incsearch
 set nohlsearch
 
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+" autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " Terminal
 au TermOpen * setlocal nonumber norelativenumber

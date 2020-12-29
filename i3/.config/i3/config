@@ -22,6 +22,8 @@ set $darkwhite   #a89984
 set $background  #000000
 set $transparent #000000FF
 set $realwhite   #FFFFFF
+set $ws_blue     #0088CC 
+
 
 set $ws1  "1: 1 "
 set $ws2  "2: 2 "
@@ -32,7 +34,7 @@ set $ws6  "6: 6 "
 set $ws7  "7: 7 "
 set $ws8  "8: 8 "
 set $ws9  "9: 9 "
-set $ws10 "10: Mixer "
+set $ws10 "10: 10"
 
 
 default_border pixel 1
@@ -42,14 +44,15 @@ mouse_warping none
 focus_follows_mouse no
 popup_during_fullscreen smart
 workspace_auto_back_and_forth yes
+show_marks yes
 
 font pango:RobotoMono Nerd Font Regular 9
 
-#                       BORDER      BACKGROUND  TEXT   INDICATOR   CHILD_BORDER
-client.focused          $cyan       $cyan       $white $cyan       $cyan
-client.unfocused        $black      $black      $white $black      $black
-client.focused_inactive $black      $black      $white $black      $black
-client.urgent           $red        $red        $black $red        $red
+#                       BORDER      BACKGROUND  TEXT        INDICATOR    CHILD_BORDER
+client.focused          $ws_blue    $ws_blue    $realwhite  $ws_blue     $ws_blue
+client.unfocused        $black      $black      $white      $black       $black
+client.focused_inactive $black      $black      $white      $black       $black
+client.urgent           $red        $red        $black      $red         $red
 client.background       $black
 
 floating_modifier $mod
@@ -65,10 +68,13 @@ bindsym XF86AudioMute exec --no-startup-id dolphin
 bindsym XF86Calculator exec --no-startup-id chromium
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+Tab exec --no-startup-id rofi -show window
-bindsym $mod+Mod1+minus exec --no-startup-id /home/chris/.screenlayout/l_h_h_p
-bindsym $mod+Mod1+plus exec --no-startup-id /home/chris/.screenlayout/l_v_h_p
+bindsym Mod1+Tab workspace back_and_forth
+bindsym $mod+Mod1+minus exec --no-startup-id /home/chris/.screenlayout/l_h_h
+bindsym $mod+Mod1+plus exec --no-startup-id /home/chris/.screenlayout/l_v_h
+bindsym $mod+q exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 bindsym $mod+Shift+c kill
+bindsym $mod+b bar mode toggle
 
 bindsym $mod+h focus left
 bindsym $mod+l focus right
@@ -88,7 +94,7 @@ bindsym $mod+o resize grow width 10 px or 10 ppt
 bindsym $mod+plus splith; exec notify-send '|'
 bindsym $mod+minus splitv; exec notify-send '-'
 bindsym $mod+Shift+f fullscreen
-bindsym $mod+Shift+g fullscreen global
+#bindsym $mod+Shift+g fullscreen global
 bindsym $mod+s layout stacking; exec notify-send 'Layout: stack'
 bindsym $mod+t layout tabbed; exec notify-send 'Layout: tab'
 bindsym $mod+e layout toggle split
@@ -107,7 +113,6 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-bindsym Mod1+Tab workspace back_and_forth
 
 bindsym $mod+Shift+u move workspace to output up
 bindsym $mod+Shift+d move workspace to output down
@@ -157,15 +162,58 @@ for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="(?i)keepassxc"] floating enable
 for_window [class="Pavucontrol"] floating enable
-assign [title=".*Mixer - Mixbus32C"] $ws10
-assign [title=".*Mixbus32C"] $ws9
+#assign [title=".*Mixer - Mixbus32C"] $ws2
+#assign [title=".*Mixbus32C"] $ws9
+
+bar {
+    output primary
+    font pango:RobotoMono Nerd Font Medium 9
+    position top
+    mode dock
+    modifier None
+    tray_output primary
+    strip_workspace_numbers yes
+    #height 22
+    workspace_min_width 40
+    separator_symbol "|"
+    status_command exec /home/chris/src/i3status-rust/target/release/i3status-rs ~/.config/i3/p_bar_config.toml
+    colors {
+        separator #666666
+        background $darkblack
+        statusline #dddddd
+        focused_workspace $ws_blue $ws_blue $realwhite
+        active_workspace #333333 #333333 $realwhite
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 $realwhite
+    }
+}
+
+bar {
+    output nonprimary
+    font pango:RobotoMono Nerd Font Medium 8
+    position top
+    mode dock
+    modifier None
+    tray_output none
+    strip_workspace_numbers yes
+    #height 22
+    workspace_min_width 40
+    separator_symbol "|"
+    status_command exec /home/chris/src/i3status-rust/target/release/i3status-rs ~/.config/i3/s_bar_config.toml
+    colors {
+        separator #666666
+        background $darkblack
+        statusline #dddddd
+        focused_workspace $ws_blue $ws_blue $realwhite
+        active_workspace #333333 #333333 $realwhite
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 $realwhite
+    }
+}
+
 
 # AUTOSTART
 exec --no-startup-id dunst
 exec --no-startup-id unclutter -grab
 exec --no-startup-id mpd
-exec --no-startup-id pasystray
 exec --no-startup-id picom -b
-exec --no-startup-id ~/.config/polybar/launch.sh
-exec --no-startup-id klipper
-exec --no-startup-id bukuserver run &
