@@ -23,6 +23,7 @@ set $background  #000000
 set $transparent #000000FF
 set $realwhite   #FFFFFF
 set $ws_blue     #0088CC 
+set $separator   #616161
 
 
 set $ws1  "1: 1 "
@@ -57,20 +58,27 @@ client.background       $black
 
 floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id $term
-bindsym $mod+Shift+space exec --no-startup-id i3-easyfocus -a -f -misc-hack-bold-r-normal--0-0-0-0-m-0-iso8859-16 --color-unfocused-bg FFFFFF --color-unfocused-fg 006600 --color-focused-fg 000000 --color-focused-bg FFFFFF --color-urgent-fg FF0000 --color-urgent-bg FFFFFF
+bindsym Control+space exec --no-startup-id i3-easyfocus -a -f -misc-hack-bold-r-normal--0-0-0-0-m-0-iso8859-16 --color-unfocused-bg FFFFFF --color-unfocused-fg 006600 --color-focused-fg 000000 --color-focused-bg FFFFFF --color-urgent-fg FF0000 --color-urgent-bg FFFFFF
 bindsym $mod+r exec --no-startup-id ~/bin/slopsize
 bindsym $mod+v exec --no-startup-id $term -e nvim
 
 bindsym XF86AudioLowerVolume exec --no-startup-id mpc toggle
 bindsym XF86AudioRaiseVolume exec --no-startup-id mpc next
 bindsym $mod+m exec --no-startup-id rofi-mpc
+
+bindcode 152 exec --no-startup-id chromium
+bindcode 163 exec --no-startup-id krusader
+bindcode 171 exec --no-startup-id mpc next
+bindcode 173 exec --no-startup-id mpc prev
+bindcode 179 exec --no-startup-id mpc toggle
+
 bindsym XF86AudioMute exec --no-startup-id dolphin
 bindsym XF86Calculator exec --no-startup-id chromium
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 bindsym Mod1+Tab workspace back_and_forth
-bindsym $mod+Mod1+minus exec --no-startup-id /home/chris/.screenlayout/l_h_h
-bindsym $mod+Mod1+plus exec --no-startup-id /home/chris/.screenlayout/l_v_h
+bindsym $mod+Control+h exec --no-startup-id /home/chris/.screenlayout/l_h_h
+bindsym $mod+Control+v exec --no-startup-id /home/chris/.screenlayout/l_v_h
 bindsym $mod+q exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 bindsym $mod+Shift+c kill
@@ -86,15 +94,20 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
+bindsym Shift+Control+h move workspace to output left
+bindsym Shift+Control+j move workspace to output down
+bindsym Shift+Control+l move workspace to output right
+bindsym Shift+Control+k move workspace to output down
+
 bindsym $mod+z resize shrink width 10 px or 10 ppt
 bindsym $mod+u resize shrink height 10 px or 10 ppt
 bindsym $mod+i resize grow height 10 px or 10 ppt
 bindsym $mod+o resize grow width 10 px or 10 ppt
 
-bindsym $mod+plus splith; exec notify-send '|'
-bindsym $mod+minus splitv; exec notify-send '-'
-bindsym $mod+Shift+f fullscreen
-#bindsym $mod+Shift+g fullscreen global
+bindsym Control+h splith; exec notify-send 'Split: horizontal'
+bindsym Control+v splitv; exec notify-send 'Split: vertical'
+bindsym Control+f fullscreen
+
 bindsym $mod+s layout stacking; exec notify-send 'Layout: stack'
 bindsym $mod+t layout tabbed; exec notify-send 'Layout: tab'
 bindsym $mod+e layout toggle split
@@ -114,8 +127,6 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-bindsym $mod+Shift+u move workspace to output up
-bindsym $mod+Shift+d move workspace to output down
 
 bindsym $mod+Shift+s sticky toggle
 
@@ -162,6 +173,7 @@ for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="(?i)keepassxc"] floating enable
 for_window [class="Pavucontrol"] floating enable
+for_window [title="Calendar"] floating enable
 #assign [title=".*Mixer - Mixbus32C"] $ws2
 #assign [title=".*Mixbus32C"] $ws9
 
@@ -178,7 +190,7 @@ bar {
     separator_symbol "|"
     status_command exec /home/chris/src/i3status-rust/target/release/i3status-rs ~/.config/i3/p_bar_config.toml
     colors {
-        separator #666666
+        separator $separator
         background $darkblack
         statusline #dddddd
         focused_workspace $ws_blue $ws_blue $realwhite
@@ -201,7 +213,7 @@ bar {
     separator_symbol "|"
     status_command exec /home/chris/src/i3status-rust/target/release/i3status-rs ~/.config/i3/s_bar_config.toml
     colors {
-        separator #666666
+        separator $separator
         background $darkblack
         statusline #dddddd
         focused_workspace $ws_blue $ws_blue $realwhite

@@ -174,6 +174,8 @@ alias todo_n='todo new -l default'
 alias alacritty-color='alacritty-colorscheme -C ~/src/cfg/alacritty-theme/themes '
 alias performance='sudo cpupower frequency-set -g performance'
 alias powersave='sudo cpupower frequency-set -g powersave'
+alias game_on='nvidia-settings -a "[gpu:0]/GPUFanControlState=0" && sudo cpupower frequency-set -g performance'
+alias game_off='nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=27" && sudo cpupower frequency-set -g powersave'
 
 
 j() {
