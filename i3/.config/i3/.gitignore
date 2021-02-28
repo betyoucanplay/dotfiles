@@ -1,3 +1,5 @@
 *
 !.gitignore
 !config
+!p_bar_config.toml
+!s_bar_config.toml

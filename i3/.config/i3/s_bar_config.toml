@@ -1,0 +1,20 @@
+[theme]
+name = "semi-native"
+
+[theme.overrides]
+
+[icons]
+name = "awesome5"
+
+[icons.overrides]
+cpu = "   "
+memory_mem = "   "
+pomodoro = "   "
+thermometer = "  "
+net_up = "&gt;"
+net_down = " &lt;"
+
+[[block]]
+block = "focused_window"
+max_width = 50
+show_marks = "visible"
