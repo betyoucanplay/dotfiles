@@ -69,10 +69,11 @@ bindsym $mod+m exec --no-startup-id rofi-mpc
 bindcode 152 exec --no-startup-id chromium
 bindcode 163 exec --no-startup-id krusader
 bindcode 171 exec --no-startup-id mpc next
+bindcode 172 exec --no-startup-id alacritty -e ncmpcpp
 bindcode 173 exec --no-startup-id mpc prev
 bindcode 179 exec --no-startup-id mpc toggle
 
-bindsym XF86AudioMute exec --no-startup-id dolphin
+bindsym XF86AudioMute exec --no-startup-id krusader
 bindsym XF86Calculator exec --no-startup-id chromium
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+Tab exec --no-startup-id rofi -show window
@@ -104,9 +105,9 @@ bindsym $mod+u resize shrink height 10 px or 10 ppt
 bindsym $mod+i resize grow height 10 px or 10 ppt
 bindsym $mod+o resize grow width 10 px or 10 ppt
 
-bindsym Control+h splith; exec notify-send 'Split: horizontal'
-bindsym Control+v splitv; exec notify-send 'Split: vertical'
-bindsym Control+f fullscreen
+bindsym Mod1+$mod+h splith; exec notify-send 'Split: horizontal'
+bindsym Mod1+$mod+v splitv; exec notify-send 'Split: vertical'
+bindsym Mod1+$mod+f fullscreen
 
 bindsym $mod+s layout stacking; exec notify-send 'Layout: stack'
 bindsym $mod+t layout tabbed; exec notify-send 'Layout: tab'
@@ -174,6 +175,7 @@ for_window [class="feh"] floating enable
 for_window [class="(?i)keepassxc"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [title="Calendar"] floating enable
+for_window [title="Der Punk"] floating enable
 #assign [title=".*Mixer - Mixbus32C"] $ws2
 #assign [title=".*Mixbus32C"] $ws9
 
@@ -188,7 +190,7 @@ bar {
     #height 22
     workspace_min_width 40
     separator_symbol "|"
-    status_command exec /home/chris/src/i3status-rust/target/release/i3status-rs ~/.config/i3/p_bar_config.toml
+    status_command exec i3status-rs ~/.config/i3/p_bar_config.toml
     colors {
         separator $separator
         background $darkblack
@@ -211,7 +213,7 @@ bar {
     #height 22
     workspace_min_width 40
     separator_symbol "|"
-    status_command exec /home/chris/src/i3status-rust/target/release/i3status-rs ~/.config/i3/s_bar_config.toml
+    status_command exec i3status-rs ~/.config/i3/s_bar_config.toml
     colors {
         separator $separator
         background $darkblack

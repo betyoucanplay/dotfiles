@@ -26,6 +26,7 @@ Plug 'preservim/nerdcommenter'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 
 " Code
@@ -43,6 +44,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'vim-python/python-syntax'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'plasticboy/vim-markdown'
+Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
+Plug 'robertbasic/vim-hugo-helper'
 
 " Style:
 Plug 'ryanoasis/vim-devicons'
