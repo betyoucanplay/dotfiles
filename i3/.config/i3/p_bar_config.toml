@@ -7,23 +7,28 @@ name = "semi-native"
 name = "awesome5"
 
 [icons.overrides]
-cpu = "   "
-memory_mem = "   "
-pomodoro = "   "
-thermometer = "  "
+cpu = ""
+memory_mem = ""
+pomodoro = ""
+thermometer = ""
 net_up = "&gt;"
-net_down = " &lt;"
-weather_rain = "  "
-weather_sun = "  "
-weather_clouds = "  "
-time = "  "
-net_wired = " 省 "
-cogs = "  "
+net_down = "&lt;"
+weather_rain = " "
+weather_sun = " "
+weather_clouds = " "
+time = " "
+net_wired = "省"
+cogs = ""
 
 [[block]]
 block = "focused_window"
 max_width = 50
 show_marks = "all"
+
+[[block]]
+block = "custom"
+command = 'xkblayout-state print %s'
+interval = 5
 
 
 [[block]]
@@ -49,15 +54,15 @@ alert = 10.0
 [[block]]
 block = "net"
 device = "enp39s0"
-format = "{speed_up} {speed_down}"
+format = "{speed_up;M*b} {speed_down;M*b}"
 interval = 5
-use_bits = false
 
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+format_mem = "{mem_used;G}"
+clickable = false
+icons = true
 
 
 [[block]]
@@ -80,7 +85,7 @@ interval = 1
 block = "temperature"
 collapsed = false
 interval = 10
-format = "{average}°C"
+format = "{average}"
 chip = "zenpower-pci-00c3"
 inputs = ["Tdie"]
 
@@ -88,9 +93,9 @@ inputs = ["Tdie"]
 
 [[block]]
 block = "weather"
-format = " {weather} {temp}°C"
+format = "{weather_verbose} {temp}"
 service = { name = "openweathermap", api_key = "dbd42c1d415c1e8e51790ede79cbd258", city_id = "2911298", units = "metric" }
-interval = 30
+interval = 60
 
 [[block]]
 block = "time"

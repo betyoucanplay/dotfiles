@@ -23,6 +23,7 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-dadbod'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -46,6 +47,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
 Plug 'robertbasic/vim-hugo-helper'
+
 
 " Style:
 Plug 'ryanoasis/vim-devicons'

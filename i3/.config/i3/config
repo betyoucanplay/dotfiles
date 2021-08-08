@@ -58,13 +58,13 @@ client.background       $black
 
 floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id $term
-bindsym Control+space exec --no-startup-id i3-easyfocus -a -f -misc-hack-bold-r-normal--0-0-0-0-m-0-iso8859-16 --color-unfocused-bg FFFFFF --color-unfocused-fg 006600 --color-focused-fg 000000 --color-focused-bg FFFFFF --color-urgent-fg FF0000 --color-urgent-bg FFFFFF
+bindsym Mod1+space exec --no-startup-id i3-easyfocus -a -f -misc-hack-bold-r-normal--0-0-0-0-m-0-iso8859-16 --color-unfocused-bg FFFFFF --color-unfocused-fg 006600 --color-focused-fg 000000 --color-focused-bg FFFFFF --color-urgent-fg FF0000 --color-urgent-bg FFFFFF
 bindsym $mod+r exec --no-startup-id ~/bin/slopsize
 bindsym $mod+v exec --no-startup-id $term -e nvim
 
 bindsym XF86AudioLowerVolume exec --no-startup-id mpc toggle
 bindsym XF86AudioRaiseVolume exec --no-startup-id mpc next
-bindsym $mod+m exec --no-startup-id rofi-mpc
+bindsym $mod+m exec --no-startup-id ~/src/mpcp/mpcp.py
 
 bindcode 152 exec --no-startup-id chromium
 bindcode 163 exec --no-startup-id krusader

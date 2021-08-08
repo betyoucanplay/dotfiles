@@ -10,6 +10,10 @@ export FZF_DEFAULT_OPTS=" --height=20 --multi  --reverse --inline-info"
 export LXVST_PATH=/usr/lib/lxvst:/usr/local/lib/lxvst:~/.lxvst
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#3b3b3b'
 
+export APULSE_PLAYBACK_DEVICE=hw:0,0
+export APULSE_CAPTURE_DEVICE=hw:0,0
+
+
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     #exec startx -- vt7 &> /dev/null
     # Could use xinit instead of startx
@@ -171,11 +175,12 @@ alias pm='ncpamixer'
 alias e='exa -l --group-directories-first --git'
 alias ea='exa -l -a --group-directories-first --git'
 alias todo_n='todo new -l default'
-alias alacritty-color='alacritty-colorscheme -C ~/src/cfg/alacritty-theme/themes '
 alias performance='sudo cpupower frequency-set -g performance'
 alias powersave='sudo cpupower frequency-set -g powersave'
-alias game_on='nvidia-settings -a "[gpu:0]/GPUFanControlState=0" && sudo cpupower frequency-set -g performance'
-alias game_off='nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=27" && sudo cpupower frequency-set -g powersave'
+alias game_on='nvidia-settings -a "[gpu:0]/GPUFanControlState=0" > /dev/null 2>&1 && sudo cpupower frequency-set -g performance > /dev/null 2>&1'
+alias game_off='nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=27" > /dev/null 2>&1 && sudo cpupower frequency-set -g powersave > /dev/null 2>&1'
+alias bycp_mnt='sshfs betyoucanplay.org:/home/chris ~/mnt/bycp'
+alias bycp_umnt='fusermount3 -u ~/mnt/bycp'
 
 
 j() {
