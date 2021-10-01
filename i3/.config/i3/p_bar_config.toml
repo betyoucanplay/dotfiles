@@ -30,26 +30,30 @@ block = "custom"
 command = 'xkblayout-state print %s'
 interval = 5
 
+[[block]]
+block = "custom"
+command = '/home/chris/bin/mixbus_version_check'
+interval = 120
 
 [[block]]
 block = "disk_space"
 path = "/"
-alias = " "
 info_type = "available"
-unit = "TB"
-interval = 20
-warning = 20.0
-alert = 10.0
+format = " {percentage}"
+alert_absolute = true
+unit = "GB"
+alert = 50
+warning = 40
 
 [[block]]
 block = "disk_space"
-path = "/home/chris/bck/"
-alias = "."
+path = "/home/chris/bck"
 info_type = "available"
-unit = "TB"
-interval = 20
-warning = 20.0
-alert = 10.0
+format = " {percentage}"
+alert_absolute = true
+unit = "GB"
+alert = 2
+warning = 10
 
 [[block]]
 block = "net"
