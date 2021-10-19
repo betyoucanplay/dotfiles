@@ -24,6 +24,9 @@ Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'kristijanhusak/vim-dadbod-completion'
+
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -31,7 +34,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 
 " Code
-Plug 'moll/vim-node'
 Plug 'godlygeek/tabular'
 Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -67,7 +69,7 @@ set pumheight=15
 set autoindent
 set history=10000
 set updatetime=100
-let mapleader = "´"
+let mapleader = ','
 "set guicursor=a:blinkon100
 
 augroup RestoreCursorShapeOnExit
@@ -145,11 +147,16 @@ set smartcase
 set incsearch
 set nohlsearch
 
-" autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " Terminal
 au TermOpen * setlocal nonumber norelativenumber
 autocmd TermOpen * startinsert
+
+" Sessions
+let g:session_dir = '~/src/vim-sessions'
+exec 'nnoremap <Leader>ss :mks! ' . g:session_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
+exec 'nnoremap <Leader>sr :so ' . g:session_dir. '/*.vim<C-D><BS><BS><BS><BS><BS>'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Bindings
@@ -257,6 +264,23 @@ let g:python_highlight_file_headers_as_comments = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-dadbod-ui
+let g:dbs = {
+\ 'meta': 'postgres://root:XXX@localhost:5433/meta',
+\ 'stage': 'postgres://root:XXX@localhost:5433/stage',
+\ 'dwh': 'postgres://root:XXX@localhost:5433/dwh',
+\ }
+
+let g:db_ui_tmp_query_location = '~/src/sql'
+let g:db_ui_winwidth = 35
+let g:db_ui_execute_on_save = 0
+let g:db_ui_show_database_icon = 1
+let g:db_ui_use_nerd_fonts = 1
+let g:omni_sql_default_compl_type = 'syntax'
+
+map <Leader>db :DBUIFindBuffer <cr>
+map <Leader>dt :DBUIToggle <cr>
+
 """"""""""
 " vimtex
 """"""""""
@@ -434,15 +458,15 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 """""""""""""
 " FZF
 """""""""""""
-map <Leader>t :FZF <cr>
-map <Leader>h :History <cr>
-map <Leader>c :History: <cr>
-map <Leader>b :Buffers <cr>
-map <Leader>l :Lines <cr>
-map <Leader>m :Maps <cr>
+map <Leader>ff :FZF <cr>
+map <Leader>fh :FZFHistory <cr>
+map <Leader>fc :FZFHistory: <cr>
+map <Leader>fb :FZFBuffers <cr>
+map <Leader>fl :FZFLines <cr>
+map <Leader>fm :FZFMaps <cr>
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --smart-case --glob "!.git"'
-let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_layout = { 'down': '~25%' }
 
 let g:fzf_colors =
             \ { 'fg':      ['fg', 'Normal'],

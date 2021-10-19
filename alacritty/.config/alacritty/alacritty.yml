@@ -3,7 +3,7 @@ env:
   COLORTERM: 24bit
 window:
   dimensions:
-    columns: 160
+    columns: 180
     lines: 45
   padding:
     x: 7

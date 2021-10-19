@@ -132,7 +132,7 @@ if ($TERM =~ '256' || &t_Co >= 256) || has("gui_running")
     hi StatusLineLine         ctermbg=31      ctermfg=white   guibg=#0087af   guifg=white     cterm=NONE gui=NONE
     hi StatusLinePercent      ctermbg=white   ctermfg=black   guibg=white     guifg=black     cterm=NONE gui=NONE
     hi StatusLineActive       ctermbg=234     ctermfg=247     guibg=#1c1c1c   guifg=#9e9e9e   cterm=NONE gui=NONE
-    hi StatusLineInactive     ctermbg=235     ctermfg=240     guibg=#262626   guifg=#585858   cterm=NONE gui=NONE
+    hi StatusLineInactive     ctermbg=235     ctermfg=240     guibg=#cccccc   guifg=#111111   cterm=NONE gui=NONE
 
     hi VimwikiHeader1 ctermfg=64 guifg=#5f8700
     hi VimwikiHeader2 ctermfg=65 guifg=#5f875f

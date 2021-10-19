@@ -4,7 +4,7 @@ name = "semi-native"
 [theme.overrides]
 
 [icons]
-name = "awesome5"
+name = "material-nf"
 
 [icons.overrides]
 cpu = ""
