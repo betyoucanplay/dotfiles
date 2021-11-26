@@ -19,10 +19,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'lilydjwg/colorizer'
 Plug 'mbbill/undotree'
 Plug 'vimwiki/vimwiki'
-Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
-Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'kristijanhusak/vim-dadbod-completion'
@@ -147,7 +145,7 @@ set smartcase
 set incsearch
 set nohlsearch
 
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+nnoremap <silent><Leader>rt :call <SID>StripTrailingWhitespaces()<cr>
 
 " Terminal
 au TermOpen * setlocal nonumber norelativenumber
@@ -190,6 +188,7 @@ nnoremap <Leader><space> :noh<cr>
 
 " Open Terminal
 nnoremap <silent> <Leader>s :15split term://zsh<CR>
+nnoremap <silent> <Leader>pp :!python %<CR>
 
 " Exit terminal
 tnoremap <Esc> <C-\><C-n>
@@ -266,13 +265,13 @@ let g:python_highlight_file_headers_as_comments = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-dadbod-ui
 let g:dbs = {
-\ 'meta': 'postgres://root:XXX@localhost:5433/meta',
-\ 'stage': 'postgres://root:XXX@localhost:5433/stage',
-\ 'dwh': 'postgres://root:XXX@localhost:5433/dwh',
+\ 'etl': 'postgres://root:xxx@localhost:5433/etl',
+\ 'stage': 'postgres://root:xxx@localhost:5433/stage',
+\ 'dwh': 'postgres://root:pw123456##@localhost:5433/dwh',
 \ }
 
 let g:db_ui_tmp_query_location = '~/src/sql'
-let g:db_ui_winwidth = 35
+let g:db_ui_winwidth = 40
 let g:db_ui_execute_on_save = 0
 let g:db_ui_show_database_icon = 1
 let g:db_ui_use_nerd_fonts = 1
@@ -285,16 +284,6 @@ map <Leader>dt :DBUIToggle <cr>
 " vimtex
 """"""""""
 let g:tex_flavor = 'latex'
-
-""""""""""
-" NERDTree
-""""""""""
-map <C-n> :NERDTreeToggle<CR>
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
-" Let quit work as expected if after entering :q the only window left open is NERD Tree itself
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """"""""""
 " Vimwiki

@@ -76,7 +76,7 @@ if ($TERM =~ '256' || &t_Co >= 256) || has("gui_running")
 
     hi TabLine          ctermbg=240   ctermfg=235     guibg=#585858 guifg=#262626 cterm=NONE           gui=NONE
     hi TabLineFill      ctermbg=234   ctermfg=234     guibg=#1c1c1c guifg=#1c1c1c cterm=NONE           gui=NONE
-    hi TabLineSel       ctermbg=black ctermfg=white   guibg=black   guifg=white   cterm=reverse        gui=reverse
+    hi TabLineSel       ctermbg=black ctermfg=white   guibg=black   guifg=#0087af   cterm=reverse        gui=reverse
 
     hi Cursor           ctermbg=242  ctermfg=NONE guibg=#6c6c6c guifg=NONE    cterm=NONE           gui=NONE
     hi CursorColumn     ctermbg=233  ctermfg=NONE guibg=#202020 guifg=NONE    cterm=NONE           gui=NONE
