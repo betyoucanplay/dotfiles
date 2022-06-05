@@ -30,10 +30,10 @@ block = "custom"
 command = 'xkblayout-state print %s'
 interval = 5
 
-[[block]]
-block = "custom"
-command = '/home/chris/bin/mixbus_version_check'
-interval = 120
+#[[block]]
+#block = "custom"
+#command = '/home/chris/bin/mixbus_version_check'
+#interval = 120
 
 [[block]]
 block = "disk_space"
@@ -58,7 +58,7 @@ warning = 10
 [[block]]
 block = "net"
 device = "enp39s0"
-format = "{speed_up;M*b} {speed_down;M*b}"
+format = "{speed_up;K} {speed_down;K}"
 interval = 5
 
 [[block]]

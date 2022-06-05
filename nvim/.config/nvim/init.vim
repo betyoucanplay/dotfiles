@@ -133,6 +133,7 @@ set scrolloff=10
 " Use mouse
 set mouse=a
 
+
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -143,7 +144,6 @@ au FileType make set noexpandtab
 set ignorecase
 set smartcase
 set incsearch
-set nohlsearch
 
 nnoremap <silent><Leader>rt :call <SID>StripTrailingWhitespaces()<cr>
 
@@ -265,9 +265,10 @@ let g:python_highlight_file_headers_as_comments = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-dadbod-ui
 let g:dbs = {
-\ 'etl': 'postgres://root:xxx@localhost:5433/etl',
-\ 'stage': 'postgres://root:xxx@localhost:5433/stage',
-\ 'dwh': 'postgres://root:pw123456##@localhost:5433/dwh',
+\ 'postgres': 'postgres://root:poc_af_123##@localhost:5433/postgres',
+\ 'etl': 'postgres://root:poc_af_123##@localhost:5433/etl',
+\ 'stage': 'postgres://root:poc_af_123##@localhost:5433/stage',
+\ 'dwh': 'postgres://root:poc_af_123##@localhost:5433/dwh',
 \ }
 
 let g:db_ui_tmp_query_location = '~/src/sql'
